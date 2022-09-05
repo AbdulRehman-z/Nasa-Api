@@ -1,0 +1,23 @@
+name: Nasa Project CI
+on:
+  push:
+    branches: [master]
+  pull_requests:
+    branches: [master]
+jobs:
+  build:
+    env:
+      CI: true
+    strategy:
+      matrix:
+        node-version: ["14.x", "18.x"]
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use version 16 of node.js
+      - uses: actions/setup-node@${{ matrix.node-version }}
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - run: npm run build --prefix client
+      - run: npm test
