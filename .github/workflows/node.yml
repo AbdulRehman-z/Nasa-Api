@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Use version 16 of node.js
-      - uses: actions/setup-node@${{ matrix.node-version }}
+        uses: actions/setup-node@${{ matrix.node-version }}
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
